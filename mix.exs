@@ -20,6 +20,7 @@ defmodule Visualise.MixProject do
   defp deps do
     [
       {:nx, "~> 0.2"},
+      {:scholar, "~> 0.1.0", github: "elixir-nx/scholar"},
       {:vega_lite, "~> 0.1.4"},
       {:kino_vega_lite, "~> 0.1.1"}
     ]
