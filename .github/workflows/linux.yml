@@ -1,0 +1,30 @@
+name: linux
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - '**/README.md'
+      - '.gitlab-ci.yml'
+      - '.github/workflows/macos*'
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    env:
+      MIX_ENV: test
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: erlef/setup-beam@v1
+        with:
+          otp-version: 24.3.4
+          elixir-version: 1.13.4
+
+      - name: Compile and Test
+        run: |
+          mix deps.get
+          mix test
