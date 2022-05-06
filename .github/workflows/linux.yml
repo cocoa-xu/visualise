@@ -11,7 +11,7 @@ on:
       - '.github/workflows/macos*'
 
 jobs:
-  build:
+  mix_test:
     runs-on: ubuntu-20.04
     env:
       MIX_ENV: test
