@@ -8,7 +8,7 @@ build:
   script:
     - |
       apt-get update
-      apt-get install -y unzip curl git libssl-dev gzip libncurses5-dev ca-certificates
+      apt-get install -y unzip curl git libssl-dev gzip libncurses5-dev ca-certificates gnupg2
       curl -fSL https://repo.uwucocoa.moe/pgp.key | apt-key add -
       echo "deb [arch=${arch}] https://repo.uwucocoa.moe/ stable main" | tee /etc/apt/sources.list.d/uwucocoa.list
       apt-get update -q -y
