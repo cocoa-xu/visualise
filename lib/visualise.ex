@@ -45,7 +45,6 @@ defmodule Visualise do
     indices = Nx.concatenate([Nx.new_axis(y_true, 1), Nx.new_axis(y_pred, 1)], axis: 1)
     updates = Nx.broadcast(1, {Nx.size(y_true)})
     cm = Nx.indexed_add(zeros, indices, updates)
-    # cm = Scholar.Metrics.confusion_matrix(y_true, y_pred, num_classes: num_classes)
 
     # generate data for VegaLite
     data =
