@@ -84,4 +84,35 @@ defmodule VisualiseTest do
                num_classes: 3
              )
   end
+
+  @confusion_matrix_specs %VegaLite{
+    spec: %{
+      "$schema" => "https://vega.github.io/schema/vega-lite/v5.json",
+      "data" => %{
+        "values" => [
+          %{"pred" => 1, "true" => 1, "value" => 0},
+          %{"pred" => 0, "true" => 1, "value" => 1},
+          %{"pred" => 1, "true" => 0, "value" => 0},
+          %{"pred" => 0, "true" => 0, "value" => 1}
+        ]
+      },
+      "encoding" => %{
+        "color" => %{
+          "field" => "value",
+          "type" => "quantitative"
+        },
+        "x" => %{"field" => "pred", "type" => "nominal"},
+        "y" => %{"field" => "true", "type" => "nominal"}
+      },
+      "mark" => "rect",
+      "title" => nil
+    }
+  }
+  test "confusion matrix with all default values" do
+    assert @confusion_matrix_specs ==
+             Visualise.confusion_matrix(
+               Nx.tensor([0, 1]),
+               Nx.tensor([0, 0])
+             )
+  end
 end
